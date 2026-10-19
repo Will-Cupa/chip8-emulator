@@ -5,6 +5,10 @@
 #define MEMORY_SIZE 4096
 #define ROM_ADDRESS 0x200
 
+#define FONT_ADDRESS 0x050
+#define FONTSET_SIZE 80
+
+
 typedef struct {
     uint8_t registers[16];
     uint8_t memory[MEMORY_SIZE];
@@ -19,3 +23,5 @@ typedef struct {
 } Chip8;
 
 int loadROM(uint8_t* buffer, FILE* rom);
+
+void loadFont(uint8_t* buffer, uint8_t* fontset);
