@@ -6,11 +6,12 @@ int main(){
 
     FILE *rom = fopen("./rom/test", "r");
 
-    printf("%s\n", device.memory+ROM_ADDRESS);
+    if(!rom){
+        printf("Could not open ROM\n");
+        return 1;
+    }
 
-    if(loadROM(device.memory, rom)){
-        printf("%s\n", device.memory+ROM_ADDRESS);
-    }else{
+    if(!loadROM(device.memory, rom)){
         printf("Error while reading\n");
     }
 
