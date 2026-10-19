@@ -26,18 +26,24 @@ int main(){
 
     loadFont(device.memory, fontset);
 
-    FILE *rom = fopen("./rom/test", "r");
+    // Open the rom file
+    FILE *rom = fopen("./rom/rockto.ch8", "r");
 
     if(!rom){
         printf("Could not open ROM\n");
         return 1;
     }
 
+    // Load rom into memory
     if(!loadROM(device.memory, rom)){
         printf("Error while reading\n");
     }
 
+    // Close rom file
     fclose(rom);
+
+    // Set program counter to beginning of rom 
+    device.programCounter = ROM_ADDRESS;
 
     return 0;
 }
