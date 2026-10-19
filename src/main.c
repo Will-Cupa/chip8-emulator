@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "chip8.h"
+#include <time.h>
 
 uint8_t fontset[FONTSET_SIZE] =
 {
@@ -23,7 +24,9 @@ uint8_t fontset[FONTSET_SIZE] =
 
 int main(){
     Chip8 device;
-
+    // Initialize random with current time as seed
+    srand(time(NULL));
+    // Load fontset into memory
     loadFont(device.memory, fontset);
 
     // Open the rom file

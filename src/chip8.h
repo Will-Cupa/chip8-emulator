@@ -1,5 +1,6 @@
 #pragma once
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdint.h>
 
 #define MEMORY_SIZE 4096
@@ -25,3 +26,6 @@ typedef struct {
 int loadROM(uint8_t* buffer, FILE* rom);
 
 void loadFont(uint8_t* buffer, uint8_t* fontset);
+
+// This function expect rand to have been initialized with srand() before
+uint8_t genRandom();

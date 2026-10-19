@@ -24,3 +24,8 @@ void loadFont(uint8_t* buffer, uint8_t* fontset){
         buffer[FONT_ADDRESS + i] = fontset[i];
     }
 }
+
+// This function expect rand to have been initialized with srand() before
+uint8_t genRandom(){
+    return rand()%255;
+}
