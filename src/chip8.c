@@ -5,7 +5,6 @@ int loadROM( uint8_t* buffer, FILE* rom){
     fseek(rom, 0, SEEK_END);
     // ask for position (equivalent to file size)
     long size = ftell(rom);
-    printf("%ld \n", size);
 
     // Reset cursor
     fseek(rom, 0, SEEK_SET);
@@ -18,4 +17,10 @@ int loadROM( uint8_t* buffer, FILE* rom){
     fread(buffer+ROM_ADDRESS, size, 1, rom);
 
     return 1;
+}
+
+void loadFont(uint8_t* buffer, uint8_t* fontset){
+    for(int i=0; i < FONTSET_SIZE; i++){
+        buffer[FONT_ADDRESS + i] = fontset[i];
+    }
 }
