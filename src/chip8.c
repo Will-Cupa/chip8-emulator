@@ -38,9 +38,17 @@ void CLS(Chip8* device){
 
 void RET(Chip8* device){
     device->stackPointer--;
-    device->programCounter = device->stack[device->stackPointer];
+    
+    JP(device, device->stack[device->stackPointer]);
 }
 
 void JP(Chip8* device, uint16_t addr){
     device->programCounter = addr;
+}
+
+void CALL(Chip8* device, uint16_t addr){
+    device->stack[device->stackPointer] = device->programCounter;
+    device->stackPointer++;
+    
+    JP(device, addr);
 }
