@@ -40,3 +40,5 @@ void RET(Chip8* device);
 void JP(Chip8* device, uint16_t addr);
 
 void CALL(Chip8* device, uint16_t addr);
+
+void SE(Chip8* device, uint8_t x, uint8_t y);
