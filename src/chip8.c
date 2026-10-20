@@ -29,3 +29,9 @@ void loadFont(uint8_t* buffer, uint8_t* fontset){
 uint8_t genRandom(){
     return rand()%255;
 }
+
+// ------------- INSTRUCTION SET -------------
+
+void CLS(Chip8* device){
+    memset(device->videoBuffer, 0, VBUFFER_SIZE * sizeof(uint32_t));
+}
