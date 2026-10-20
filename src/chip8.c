@@ -35,3 +35,8 @@ uint8_t genRandom(){
 void CLS(Chip8* device){
     memset(device->videoBuffer, 0, VBUFFER_SIZE * sizeof(uint32_t));
 }
+
+void RET(Chip8* device){
+    device->stackPointer--;
+    device->programCounter = device->stack[device->stackPointer];
+}

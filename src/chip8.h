@@ -34,3 +34,5 @@ uint8_t genRandom();
 // ------------- INSTRUCTION SET -------------
 
 void CLS(Chip8* device);
+
+void RET(Chip8* device);
