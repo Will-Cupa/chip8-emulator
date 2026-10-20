@@ -36,3 +36,5 @@ uint8_t genRandom();
 void CLS(Chip8* device);
 
 void RET(Chip8* device);
+
+void JP(Chip8* device, uint16_t addr);
