@@ -2,13 +2,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <string.h>
 
 #define MEMORY_SIZE 4096
 #define ROM_ADDRESS 0x200
 
 #define FONT_ADDRESS 0x050
 #define FONTSET_SIZE 80
-
+#define VBUFFER_SIZE 64
 
 typedef struct {
     uint8_t registers[16];
@@ -20,7 +21,7 @@ typedef struct {
     uint8_t delayTimer;
     uint8_t soundTimer;
     uint8_t keypad[16];
-    uint32_t videoBuffer[64];
+    uint32_t videoBuffer[VBUFFER_SIZE];
 } Chip8;
 
 int loadROM(uint8_t* buffer, FILE* rom);
@@ -29,3 +30,7 @@ void loadFont(uint8_t* buffer, uint8_t* fontset);
 
 // This function expect rand to have been initialized with srand() before
 uint8_t genRandom();
+
+// ------------- INSTRUCTION SET -------------
+
+void CLS(Chip8* device);
