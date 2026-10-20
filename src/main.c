@@ -24,10 +24,6 @@ uint8_t fontset[FONTSET_SIZE] =
 
 int main(){
     Chip8 device;
-    // Initialize random with current time as seed
-    srand(time(NULL));
-    // Load fontset into memory
-    loadFont(device.memory, fontset);
 
     // Open the rom file
     FILE *rom = fopen("./rom/rockto.ch8", "r");
@@ -47,6 +43,14 @@ int main(){
 
     // Set program counter to beginning of rom 
     device.programCounter = ROM_ADDRESS;
+    // Set stack pointer to 0
+    device.stackPointer = 0;
+
+    // Initialize random with current time as seed
+    srand(time(NULL));
+    // Load fontset into memory
+    loadFont(device.memory, fontset);
+
 
     return 0;
 }
