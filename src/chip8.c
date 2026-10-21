@@ -64,3 +64,7 @@ void SNE(Chip8* device, uint8_t x, uint8_t y){
         device->programCounter += 2;
     }
 }
+
+void ADDval(Chip8* device, uint8_t index, uint8_t val){
+    device->registers[index] = (device->registers[index] + val)%256;
+}
