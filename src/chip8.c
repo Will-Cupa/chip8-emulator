@@ -58,3 +58,9 @@ void SE(Chip8* device, uint8_t x, uint8_t y){
         device->programCounter += 2; // increment by 2 because an instruction is 2 bytes
     }
 }
+
+void SNE(Chip8* device, uint8_t x, uint8_t y){
+    if(x != y){
+        device->programCounter += 2;
+    }
+}
