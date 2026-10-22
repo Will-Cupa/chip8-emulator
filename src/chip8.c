@@ -90,8 +90,8 @@ void SUB(Chip8* device, uint8_t indices){
 }
 
 void SUBN(Chip8* device, uint8_t indices){
-    printf("%X\n", indices);
-    SUB(device, (indices >> 4) + (indices << 4));
+    device->registers[0x0F] = (device->registers[indices >> 4] <= device->registers[indices & 0x0F]);
+    device->registers[indices >> 4] = device->registers[indices & 0x0F] - device->registers[indices >> 4];
 }
 
 void OR(Chip8* device, uint8_t indices){
