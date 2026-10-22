@@ -54,6 +54,8 @@ void ADDregister(Chip8* device, uint8_t indices);
 
 void SUB(Chip8* device, uint8_t indices);
 
+void SUBN(Chip8* device, uint8_t indices);
+
 void OR(Chip8* device, uint8_t indices);
 
 void XOR(Chip8* device, uint8_t indices);
