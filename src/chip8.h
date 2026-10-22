@@ -47,5 +47,7 @@ void SNE(Chip8* device, uint8_t x, uint8_t y);
 
 void ADDval(Chip8* device, uint8_t index, uint8_t val);
 
+void ADDI(Chip8* device, uint8_t val);
+
 // One index is half a byte, so we pass two of them as one byte
 void ADDregister(Chip8* device, uint8_t indices);
