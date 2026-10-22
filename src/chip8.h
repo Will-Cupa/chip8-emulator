@@ -31,6 +31,8 @@ void loadFont(uint8_t* buffer, uint8_t* fontset);
 // This function expect rand to have been initialized with srand() before
 uint8_t genRandom();
 
+void skip(Chip8* device);
+
 // ------------- INSTRUCTION SET -------------
 
 void CLS(Chip8* device);
