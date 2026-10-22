@@ -30,6 +30,10 @@ uint8_t genRandom(){
     return rand()%255;
 }
 
+void skip(Chip8* device){
+    device->programCounter += 2; // increment by 2 because an instruction is 2 bytes
+}
+
 // ------------- INSTRUCTION SET -------------
 
 void CLS(Chip8* device){
@@ -55,13 +59,13 @@ void CALL(Chip8* device, uint16_t addr){
 
 void SE(Chip8* device, uint8_t x, uint8_t y){
     if(x == y){
-        device->programCounter += 2; // increment by 2 because an instruction is 2 bytes
+        skip(device);
     }
 }
 
 void SNE(Chip8* device, uint8_t x, uint8_t y){
     if(x != y){
-        device->programCounter += 2;
+        skip(device);
     }
 }
 
