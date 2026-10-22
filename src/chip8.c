@@ -66,5 +66,12 @@ void SNE(Chip8* device, uint8_t x, uint8_t y){
 }
 
 void ADDval(Chip8* device, uint8_t index, uint8_t val){
-    device->registers[index] = (device->registers[index] + val)%256;
+    device->registers[index && 0x0F] = (device->registers[index && 0x0F] + val)%256;
+}
+
+void ADDregister(Chip8* device, uint8_t indices){
+    uint16_t result = (device->registers[indices && 0xF0] + device->registers[indices && 0x0F])%256;
+
+    device->registers[indices && 0xF0] = result;
+    device->registers[0x0F] = (result > 255);
 }
