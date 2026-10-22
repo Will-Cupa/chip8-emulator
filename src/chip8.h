@@ -53,3 +53,5 @@ void ADDI(Chip8* device, uint8_t val);
 void ADDregister(Chip8* device, uint8_t indices);
 
 void OR(Chip8* device, uint8_t indices);
+
+void AND(Chip8* device, uint8_t indices)

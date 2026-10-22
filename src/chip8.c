@@ -83,3 +83,8 @@ void ADDregister(Chip8* device, uint8_t indices){
 void OR(Chip8* device, uint8_t indices){
     device->registers[indices >> 4] = device->registers[indices >> 4] | device->registers[indices & 0x0F];
 }
+
+
+void AND(Chip8* device, uint8_t indices){
+    device->registers[indices >> 4] = device->registers[indices >> 4] & device->registers[indices & 0x0F];
+}
