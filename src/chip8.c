@@ -80,6 +80,11 @@ void ADDregister(Chip8* device, uint8_t indices){
     device->registers[0x0F] = (result > 255);
 }
 
+void SUB(Chip8* device, uint8_t indices){
+    device->registers[0x0F] = (device->registers[indices >> 4] >= device->registers[indices & 0x0F]);
+    device->registers[indices >> 4] = device->registers[indices >> 4] - device->registers[indices & 0x0F];
+}
+
 void OR(Chip8* device, uint8_t indices){
     device->registers[indices >> 4] = device->registers[indices >> 4] | device->registers[indices & 0x0F];
 }
