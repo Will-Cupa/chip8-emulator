@@ -51,3 +51,5 @@ void ADDI(Chip8* device, uint8_t val);
 
 // One index is half a byte, so we pass two of them as one byte
 void ADDregister(Chip8* device, uint8_t indices);
+
+void OR(Chip8* device, uint8_t indices);
