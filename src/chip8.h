@@ -51,7 +51,7 @@ void ADDval(Chip8* device, uint8_t index, uint8_t val);
 
 void ADDI(Chip8* device, uint8_t val);
 
-// One index is half a byte, so we pass two of them as one byte
+// One index is half a byte, so we pass two of them as one byte : xxyy
 void ADDregister(Chip8* device, uint8_t indices);
 
 void SUB(Chip8* device, uint8_t indices);
@@ -65,3 +65,5 @@ void XOR(Chip8* device, uint8_t indices);
 void AND(Chip8* device, uint8_t indices);
 
 void SHR(Chip8* device, uint8_t index);
+
+void SHR(Chip8* device, uint8_t indices);
