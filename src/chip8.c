@@ -50,6 +50,10 @@ void JP(Chip8* device, uint16_t addr){
     device->programCounter = addr;
 }
 
+void JPV0(Chip8* device, uint16_t addr){
+    JP(device, addr + device->registers[0]);
+}
+
 void CALL(Chip8* device, uint16_t addr){
     device->stack[device->stackPointer] = device->programCounter;
     device->stackPointer++;
