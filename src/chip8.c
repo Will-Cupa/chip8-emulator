@@ -106,10 +106,9 @@ void AND(Chip8* device, uint8_t indices){
     device->registers[indices >> 4] = device->registers[indices >> 4] & device->registers[indices & 0x0F];
 }
 
-void SHR(Chip8* device, uint8_t index){
-    index = index >> 4;
-    device->registers[0x0F] = device->registers[index] & 0x01;
-    device->registers[index] >>= 1;
+void SHR(Chip8* device, uint8_t indices){
+    device->registers[0x0F] = device->registers[indices & 0x0F] & 0x01;
+    device->registers[indices >> 4] = device->registers[indices & 0x0F] >> 1;
 }
 
 void SHL(Chip8* device, uint8_t indices){
