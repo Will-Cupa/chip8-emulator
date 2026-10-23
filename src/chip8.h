@@ -64,6 +64,6 @@ void XOR(Chip8* device, uint8_t indices);
 
 void AND(Chip8* device, uint8_t indices);
 
-void SHR(Chip8* device, uint8_t index);
-
 void SHR(Chip8* device, uint8_t indices);
+
+void SHL(Chip8* device, uint8_t indices);
