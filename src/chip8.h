@@ -9,7 +9,8 @@
 
 #define FONT_ADDRESS 0x050
 #define FONTSET_SIZE 80
-#define VBUFFER_SIZE 64
+#define VBUFFER_SIZE 32
+
 
 typedef struct {
     uint8_t registers[16];
@@ -21,7 +22,7 @@ typedef struct {
     uint8_t delayTimer;
     uint8_t soundTimer;
     uint8_t keypad[16];
-    uint32_t videoBuffer[VBUFFER_SIZE];
+    uint64_t videoBuffer[VBUFFER_SIZE];
 } Chip8;
 
 int loadROM(uint8_t* buffer, FILE* rom);
@@ -36,6 +37,8 @@ void skip(Chip8* device);
 // ------------- INSTRUCTION SET -------------
 
 void CLS(Chip8* device);
+
+void DRW(Chip8* device, uint8_t indices, uint8_t height);
 
 void RET(Chip8* device);
 
