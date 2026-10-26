@@ -135,3 +135,11 @@ void SHL(Chip8* device, uint8_t indices){
 void RND(Chip8* device, uint8_t index, uint16_t mask){
     device->registers[index & 0x0F] = genRandom() & mask;
 }
+
+void SKP(Chip8* device, uint8_t index){
+    uint8_t key = device->registers[index & 0x0F];
+    
+    if(device->keypad[key]){
+        skip(device);
+    }
+}
