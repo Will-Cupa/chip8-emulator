@@ -51,19 +51,5 @@ int main(){
     // Load fontset into memory
     loadFont(device.memory, fontset);
 
-    CLS(&device);
-
-    device.index = FONT_ADDRESS;
-
-    device.registers[0] = 0;
-    device.registers[1] = 0;
-
-    DRW(&device, 0x01, 5);
-
-
-    for(int i = 0; i<5; i++){
-        printf("%016X\n", device.videoBuffer[i]);
-    }
-
     return 0;
 }
