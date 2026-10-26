@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <string.h>
 
+#define BYTE_SIZE 8
 #define MEMORY_SIZE 4096
 #define ROM_ADDRESS 0x200
 
