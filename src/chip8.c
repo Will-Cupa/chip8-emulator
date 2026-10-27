@@ -180,3 +180,16 @@ void LDinRegister(Chip8* device, int lastReg){
 
     device->index = lastReg;
 }
+
+void LDK(Chip8* device, uint8_t index){
+    uint16_t mask = 1;
+
+    for(int i=0; i < 16; i++){
+        if(device->keypad & mask){
+            device->registers[index & 0x0F] = i;
+            break;
+        }
+
+        mask <<= 1;
+    }
+}
