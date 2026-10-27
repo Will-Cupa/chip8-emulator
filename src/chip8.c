@@ -160,12 +160,12 @@ void LD16bit(uint16_t* ptr, uint16_t val){
     *ptr = val;
 }
 
-void LDinMemory(Chip8* device, int index, uint8_t* content, int size){
-    if(index + size >= MEMORY_SIZE){
-        size = MEMORY_SIZE - index - 1;
+void LDinMemory(Chip8* device, uint8_t* content, int size){
+    if(device->index + size >= MEMORY_SIZE){
+        size = MEMORY_SIZE - device->index - 1;
     } 
 
-    memcpy(device->memory+index, content, size*sizeof(uint8_t));
+    memcpy(device->memory + device->index, content, size*sizeof(uint8_t));
 }
 
 void LDinRegister(Chip8* device, int lastReg){
@@ -175,7 +175,7 @@ void LDinRegister(Chip8* device, int lastReg){
     } 
 
     lastReg++;
-    
+
     memcpy(device->registers, device->memory + device->index, lastReg*sizeof(uint8_t));
 
     device->index = lastReg;

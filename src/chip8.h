@@ -84,6 +84,6 @@ void LD8bit(uint8_t* ptr, uint8_t val);
 
 void LD16bit(uint16_t* ptr, uint16_t val);
 
-void LDinMemory(Chip8* device, int index, uint8_t* content, int size);
+void LDinMemory(Chip8* device, uint8_t* content, int size);
 
 void LDinRegister(Chip8* device, int lastReg);
