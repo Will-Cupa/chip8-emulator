@@ -152,12 +152,12 @@ void SKNP(Chip8* device, uint8_t index){
     }
 }
 
-void LD8bit(uint8_t* ptr, uint8_t val){
+void LD(uint8_t* ptr, uint8_t val){
     *ptr = val;
 }
 
-void LD16bit(uint16_t* ptr, uint16_t val){
-    *ptr = val;
+void LDI(Chip8* device, uint16_t addr){
+    device->index = addr;
 }
 
 void LDinMemory(Chip8* device, uint8_t* content, int size){
