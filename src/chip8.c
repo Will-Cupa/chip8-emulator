@@ -137,17 +137,17 @@ void RND(Chip8* device, uint8_t index, uint16_t mask){
 }
 
 void SKP(Chip8* device, uint8_t index){
-    uint8_t key = device->registers[index & 0x0F];
-    
-    if(device->keypad[key]){
+    uint16_t mask = 1 << device->registers[index & 0x0F];
+
+    if(device->keypad & mask){
         skip(device);
     }
 }
 
 void SKNP(Chip8* device, uint8_t index){
-    uint8_t key = device->registers[index & 0x0F];
-    
-    if(!device->keypad[key]){
+    uint16_t mask = 1 << device->registers[index & 0x0F];
+
+    if(!device->keypad & mask){
         skip(device);
     }
 }
