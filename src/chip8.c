@@ -137,17 +137,62 @@ void RND(Chip8* device, uint8_t index, uint16_t mask){
 }
 
 void SKP(Chip8* device, uint8_t index){
-    uint8_t key = device->registers[index & 0x0F];
-    
-    if(device->keypad[key]){
+    uint16_t mask = 1 << device->registers[index & 0x0F];
+
+    if(device->keypad & mask){
         skip(device);
     }
 }
 
 void SKNP(Chip8* device, uint8_t index){
-    uint8_t key = device->registers[index & 0x0F];
-    
-    if(!device->keypad[key]){
+    uint16_t mask = 1 << device->registers[index & 0x0F];
+
+    if(!device->keypad & mask){
         skip(device);
     }
+}
+
+void LD8bit(uint8_t* ptr, uint8_t val){
+    *ptr = val;
+}
+
+void LD16bit(uint16_t* ptr, uint16_t val){
+    *ptr = val;
+}
+
+void LDinMemory(Chip8* device, uint8_t* content, int size){
+    if(device->index + size >= MEMORY_SIZE){
+        size = MEMORY_SIZE - device->index - 1;
+    } 
+
+    memcpy(device->memory + device->index, content, size*sizeof(uint8_t));
+}
+
+void LDinRegister(Chip8* device, int lastReg){
+    // vF is the last register
+    if(lastReg > 0x0F){
+        lastReg = 0x0F;
+    } 
+
+    lastReg++;
+
+    memcpy(device->registers, device->memory + device->index, lastReg*sizeof(uint8_t));
+
+    device->index = lastReg;
+}
+
+void LDK(Chip8* device, uint8_t index){
+    uint16_t mask = 1;
+
+    for(int i=0; i < 16; i++){
+        if(device->keypad & mask){
+            device->registers[index & 0x0F] = i;
+            break;
+        }
+
+        mask <<= 1;
+    }
+
+    // decrementing counter if no key was pressed, effectively waiting for keypress
+    device->programCounter -=2;
 }

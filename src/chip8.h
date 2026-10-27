@@ -22,7 +22,7 @@ typedef struct {
     uint8_t stackPointer;
     uint8_t delayTimer;
     uint8_t soundTimer;
-    uint8_t keypad[16];
+    uint16_t keypad;
     uint64_t videoBuffer[VBUFFER_SIZE];
 } Chip8;
 
@@ -79,3 +79,13 @@ void RND(Chip8* device, uint8_t index, uint16_t mask);
 void SKP(Chip8* device, uint8_t index);
 
 void SKNP(Chip8* device, uint8_t index);
+
+void LD8bit(uint8_t* ptr, uint8_t val);
+
+void LD16bit(uint16_t* ptr, uint16_t val);
+
+void LDinMemory(Chip8* device, uint8_t* content, int size);
+
+void LDinRegister(Chip8* device, int lastReg);
+
+void LDK(Chip8* Device, uint8_t index);
