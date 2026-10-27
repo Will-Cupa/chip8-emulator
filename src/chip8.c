@@ -192,4 +192,7 @@ void LDK(Chip8* device, uint8_t index){
 
         mask <<= 1;
     }
+
+    // decrementing counter if no key was pressed, effectively waiting for keypress
+    device->programCounter -=2;
 }
