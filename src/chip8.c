@@ -159,3 +159,7 @@ void LD8bit(uint8_t* ptr, uint8_t val){
 void LD16bit(uint16_t* ptr, uint16_t val){
     *ptr = val;
 }
+
+void LDinMemory(Chip8* device, int index, uint8_t* content, int size){
+    memcpy(device->memory+index, content, size*sizeof(uint8_t));
+}
