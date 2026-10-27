@@ -151,3 +151,7 @@ void SKNP(Chip8* device, uint8_t index){
         skip(device);
     }
 }
+
+void LD8bit(uint8_t* ptr, uint8_t val){
+    *ptr = val;
+}
