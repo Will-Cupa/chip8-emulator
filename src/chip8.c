@@ -47,7 +47,6 @@ void DRW(Chip8* device, uint8_t indices, uint8_t height){
     int shift = (sizeof(uint64_t) - sizeof(uint8_t)) * BYTE_SIZE - x;
 
     for(int i=0; i<height; i++){
-        printf("video mem: %02X\n\n", device->memory[device->index + i]);
         device->videoBuffer[(y + i)] ^= ((uint64_t)device->memory[device->index + i]) << shift;
     }
 }
