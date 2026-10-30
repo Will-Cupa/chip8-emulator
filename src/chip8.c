@@ -174,6 +174,7 @@ void LDinRegister(Chip8* device, int lastReg){
         lastReg = 0x0F;
     } 
 
+    // last register is included so size is last register id+1
     lastReg++;
 
     memcpy(device->registers, device->memory + device->index, lastReg*sizeof(uint8_t));

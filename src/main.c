@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "chip8.h"
 #include <time.h>
+#include "decode.h"
 
 uint8_t fontset[FONTSET_SIZE] =
 {
@@ -41,15 +41,27 @@ int main(){
     // Close rom file
     fclose(rom);
 
+    // Load fontset into memory
+    loadFont(device.memory, fontset);
+
+    // Initialize random with current time as seed
+    srand(time(NULL));
+
     // Set program counter to beginning of rom 
     device.programCounter = ROM_ADDRESS;
     // Set stack pointer to 0
     device.stackPointer = 0;
 
-    // Initialize random with current time as seed
-    srand(time(NULL));
-    // Load fontset into memory
-    loadFont(device.memory, fontset);
+    for(int i=0; i < 10; i++){
+        // opcode is stored in two cell of memory because one opcode is 16bit
+        uint16_t opcode = (device.memory[device.programCounter] << 8) | device.memory[device.programCounter+1];
+        printf("%x\n", opcode);
+
+        // Increment program counter
+        skip(&device);
+
+        // decode(&device, opcode);
+    }
 
     return 0;
 }
