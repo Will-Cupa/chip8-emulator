@@ -60,7 +60,7 @@ int main(){
         // Increment program counter
         skip(&device);
 
-        // decode(&device, opcode);
+        decode(&device, opcode);
     }
 
     return 0;
