@@ -61,6 +61,7 @@ int main(){
         skip(&device);
 
         decode(&device, opcode);
+        printf("PC : %04x\n", device.programCounter);
     }
 
     return 0;

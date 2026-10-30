@@ -14,6 +14,10 @@ void decode(Chip8 *device, uint16_t opcode){
             case 0xEE:
                 RET(device);
                 break;
+
+            default:
+                printf("unknown operation\n");
+                break;
         }
 
         break;
@@ -86,6 +90,7 @@ void decode(Chip8 *device, uint16_t opcode){
                 break;
             
             default:
+                printf("unknown operation\n");
                 break;
         }
         break;
@@ -169,12 +174,14 @@ void decode(Chip8 *device, uint16_t opcode){
                 break;
 
             default:
+                printf("unknown operation\n");
                 break;
         }
 
         break;
 
     default:
+        printf("unknown operation\n");
         break;
     }
 }
