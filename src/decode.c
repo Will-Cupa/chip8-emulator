@@ -19,11 +19,11 @@ void decode(Chip8 *device, uint16_t opcode){
         break;
 
     case 0x1:
-        JP(device, opcode);
+        JP(device, opcode & 0x0FFF);
         break;
     
     case 0x2:
-        CALL(device, opcode);
+        CALL(device, opcode & 0x0FFF);
         break;
     
     case 0x3:        
@@ -91,17 +91,15 @@ void decode(Chip8 *device, uint16_t opcode){
         break;
     
     case 0x9:
-        uint8_t indices = (opcode >> 4);
-        
         SNE(device, device->registers[indices >> 4], device->registers[indices & 0x0F]);
         break;
     
     case 0xA:
-        LDI(device, opcode);
+        LDI(device, opcode & 0x0FFF);
         break;
     
     case 0xB:
-        JPV0(device, opcode);
+        JPV0(device, opcode & 0x0FFF);
         break;
     
     case 0xC:
