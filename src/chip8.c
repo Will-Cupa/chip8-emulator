@@ -132,7 +132,7 @@ void SHL(Chip8* device, uint8_t indices){
     device->registers[indices >> 4] = device->registers[indices & 0x0F] << 1;
 }
 
-void RND(Chip8* device, uint8_t index, uint16_t mask){
+void RND(Chip8* device, uint8_t index, uint8_t mask){
     device->registers[index & 0x0F] = genRandom() & mask;
 }
 
