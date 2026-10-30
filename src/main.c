@@ -55,7 +55,7 @@ int main(){
     for(int i=0; i < 10; i++){
         // opcode is stored in two cell of memory because one opcode is 16bit
         uint16_t opcode = (device.memory[device.programCounter] << 8) | device.memory[device.programCounter+1];
-        printf("%x\n", opcode);
+        printf("%04x\n", opcode);
 
         // Increment program counter
         skip(&device);
