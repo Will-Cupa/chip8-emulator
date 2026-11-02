@@ -46,8 +46,7 @@ void DRW(Chip8* device, uint8_t indices, uint8_t height){
     
     int shift = (sizeof(uint64_t) - sizeof(uint8_t)) * BYTE_SIZE - x;
 
-    for(int i=0; i<height; i++){
-        printf("video mem: %02X\n\n", device->memory[device->index + i]);
+    for(int i=0; i<(height & 0x0F); i++){
         device->videoBuffer[(y + i)] ^= ((uint64_t)device->memory[device->index + i]) << shift;
     }
 }
@@ -132,7 +131,7 @@ void SHL(Chip8* device, uint8_t indices){
     device->registers[indices >> 4] = device->registers[indices & 0x0F] << 1;
 }
 
-void RND(Chip8* device, uint8_t index, uint16_t mask){
+void RND(Chip8* device, uint8_t index, uint8_t mask){
     device->registers[index & 0x0F] = genRandom() & mask;
 }
 
@@ -174,6 +173,7 @@ void LDinRegister(Chip8* device, int lastReg){
         lastReg = 0x0F;
     } 
 
+    // last register is included so size is last register id+1
     lastReg++;
 
     memcpy(device->registers, device->memory + device->index, lastReg*sizeof(uint8_t));

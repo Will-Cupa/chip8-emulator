@@ -74,7 +74,7 @@ void SHR(Chip8* device, uint8_t indices);
 
 void SHL(Chip8* device, uint8_t indices);
 
-void RND(Chip8* device, uint8_t index, uint16_t mask);
+void RND(Chip8* device, uint8_t index, uint8_t mask);
 
 void SKP(Chip8* device, uint8_t index);
 
