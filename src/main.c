@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <time.h>
 #include "decode.h"
+#include "display.h"
 
 uint8_t fontset[FONTSET_SIZE] =
 {
@@ -47,6 +48,9 @@ int main(){
     // Initialize random with current time as seed
     srand(time(NULL));
 
+    // Initialize graphic library
+    Display display = initDisplay();
+
     // Set program counter to beginning of rom 
     device.programCounter = ROM_ADDRESS;
     // Set stack pointer to 0
@@ -64,5 +68,20 @@ int main(){
         printf("PC : %04x\n", device.programCounter);
     }
 
+    SDL_Event event;
+    int running = 1;
+
+    while (running) {
+        while (SDL_PollEvent(&event)) {
+            if (event.type == SDL_QUIT) {
+                running = 0;
+            }
+        }
+
+        draw(display.renderer);
+    }
+
+
+    destroy(&display);
     return 0;
 }
