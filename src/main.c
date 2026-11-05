@@ -78,7 +78,7 @@ int main(){
             }
         }
 
-        draw(display.renderer);
+        draw(display.renderer, device.videoBuffer);
     }
 
 
