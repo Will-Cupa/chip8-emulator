@@ -17,6 +17,7 @@ void decode(Chip8 *device, uint16_t opcode){
 
             default:
                 printf("unknown operation\n");
+                exit(1);
                 break;
         }
 
@@ -166,11 +167,11 @@ void decode(Chip8 *device, uint16_t opcode){
                 break;
 
             case 0x55:
-                LDinMemory(device, device->registers, device->registers[index]+1); // Add one because register[x] is included in copy, so size is x+1
+                LDinMemory(device, device->registers, index+1); // Add one because register[0 to x] are included in copy, so size is x+1
                 break;
 
             case 0x65:
-                LDinRegister(device, device->registers[index]);
+                LDinRegister(device, index);
                 break;
 
             default:

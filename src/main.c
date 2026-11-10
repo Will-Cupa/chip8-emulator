@@ -27,7 +27,7 @@ int main(){
     Chip8 device;
 
     // Open the rom file
-    FILE *rom = fopen("./rom/rockto.ch8", "r");
+    FILE *rom = fopen("./rom/Keypad_Test_fixed.ch8", "r");
 
     if(!rom){
         printf("Could not open ROM\n");
@@ -56,18 +56,6 @@ int main(){
     // Set stack pointer to 0
     device.stackPointer = 0;
 
-    for(int i=0; i < 10; i++){
-        // opcode is stored in two cell of memory because one opcode is 16bit
-        uint16_t opcode = (device.memory[device.programCounter] << 8) | device.memory[device.programCounter+1];
-        printf("%04x\n", opcode);
-
-        // Increment program counter
-        skip(&device);
-
-        decode(&device, opcode);
-        printf("PC : %04x\n", device.programCounter);
-    }
-
     SDL_Event event;
     int running = 1;
 
@@ -77,6 +65,19 @@ int main(){
                 running = 0;
             }
         }
+
+        printf("-------next instruction--------\n");
+        printf("PC : %04x\n", device.programCounter);
+        printf("index : %04X\n", device.index);
+        printf("V[2] : %02x\n", device.registers[2]);
+        // opcode is stored in two cell of memory because one opcode is 16bit
+        uint16_t opcode = (device.memory[device.programCounter] << 8) | device.memory[device.programCounter+1];
+        printf("%04x\n", opcode);
+
+        // Increment program counter
+        skip(&device);
+
+        decode(&device, opcode);
 
         draw(display.renderer, device.videoBuffer);
     }
