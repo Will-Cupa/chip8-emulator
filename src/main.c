@@ -27,7 +27,7 @@ int main(){
     Chip8 device;
 
     // Open the rom file
-    FILE *rom = fopen("./rom/Keypad_Test_fixed.ch8", "r");
+    FILE *rom = fopen("./rom/test_opcode.ch8", "r");
 
     if(!rom){
         printf("Could not open ROM\n");
@@ -55,6 +55,8 @@ int main(){
     device.programCounter = ROM_ADDRESS;
     // Set stack pointer to 0
     device.stackPointer = 0;
+    // Clear display
+    CLS(&device);
 
     SDL_Event event;
     int running = 1;
