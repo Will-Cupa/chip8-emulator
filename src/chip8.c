@@ -185,14 +185,18 @@ void LDinRegister(Chip8* device, int lastReg){
 void LDK(Chip8* device, uint8_t index){
     uint16_t mask = 1;
 
+    // printf("Before %d\n", device->registers[index & 0x0F]);
+
     for(int i=0; i < 16; i++){
         if(device->keypad & mask){
             device->registers[index & 0x0F] = i;
-            break;
+            return;
         }
 
         mask <<= 1;
     }
+
+
 
     // decrementing counter if no key was pressed, effectively waiting for keypress
     device->programCounter -=2;
