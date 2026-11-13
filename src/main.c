@@ -42,7 +42,8 @@ int main(int argc, char* argv[]){
     }
 
     if(romFile == NULL){
-        printf("Show help\n");
+        printf("%s [OPTIONS] [ROMFILE]\n", argv[0]);
+        printf("options :\n--clock-speed [VALUE] : clock speed in hertz (defaults to %3.0f)\n", DEFAULT_CLOCK_SPEED);
         return 0;
     }
 
