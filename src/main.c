@@ -73,6 +73,8 @@ int main(){
 
         // Increment program counter
         skip(&device);
+        // Decrement delay timer
+        device.delayTimer--;
 
         decode(&device, opcode);
 
