@@ -6,7 +6,7 @@
 #include "inputManager.h"
 
 // in hertz
-#define CLOCK_SPEED 60.0f
+#define DEFAULT_CLOCK_SPEED 400.0f
 
 uint8_t fontset[FONTSET_SIZE] =
 {
@@ -28,12 +28,29 @@ uint8_t fontset[FONTSET_SIZE] =
 	0xF0, 0x80, 0xF0, 0x80, 0x80  // F
 };
 
-int main(){
+int main(int argc, char* argv[]){
+    float clockSpeed = DEFAULT_CLOCK_SPEED;
+    char* romFile = NULL;
+
+    for(int i=1; i<argc; i++){
+        if(strcmp(argv[i],"--clock-speed") == 0){
+            clockSpeed = atof(argv[i+1]);
+            i++; //To ignore value of current option in next iteration
+        }else{
+            romFile=argv[i];
+        }
+    }
+
+    if(romFile == NULL){
+        printf("Show help\n");
+        return 0;
+    }
+
     Chip8 device;
 
     // Open the rom file
-    FILE *rom = fopen("./rom/Keypad_Test_fixed.ch8", "r");
-
+    FILE *rom = fopen(romFile, "r");
+    
     if(!rom){
         printf("Could not open ROM\n");
         return 1;
@@ -98,7 +115,7 @@ int main(){
 
         draw(display.renderer, device.videoBuffer);
         
-        while(clock() - beginTime < CLOCKS_PER_SEC/CLOCK_SPEED);
+        while(clockSpeed && clock() - beginTime < CLOCKS_PER_SEC/clockSpeed);
     }
 
     destroySoundDevice(&soundDevice);
