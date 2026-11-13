@@ -4,6 +4,9 @@
 #include "display.h"
 #include "inputManager.h"
 
+// in hertz
+#define CLOCK_SPEED 60.0f
+
 uint8_t fontset[FONTSET_SIZE] =
 {
 	0xF0, 0x90, 0x90, 0x90, 0xF0, // 0
@@ -62,10 +65,11 @@ int main(){
     // Clear display
     CLS(&device);
 
-    // const uint8_t* keyState = SDL_GetKeyboardState(NULL);
     int running = 1;
+    clock_t beginTime;
 
     while (running) {
+        beginTime = clock();
         fetchInput(&device.keypad, &running);
         // opcode is stored in two cell of memory because one opcode is 16bit
         uint16_t opcode = (device.memory[device.programCounter] << 8) | device.memory[device.programCounter+1];
@@ -79,6 +83,8 @@ int main(){
         decode(&device, opcode);
 
         draw(display.renderer, device.videoBuffer);
+
+        while(clock() - beginTime < CLOCKS_PER_SEC/CLOCK_SPEED);
     }
 
 
