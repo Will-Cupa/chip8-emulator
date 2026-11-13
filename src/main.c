@@ -2,6 +2,7 @@
 #include <time.h>
 #include "decode.h"
 #include "display.h"
+#include "inputManager.h"
 
 uint8_t fontset[FONTSET_SIZE] =
 {
@@ -27,7 +28,7 @@ int main(){
     Chip8 device;
 
     // Open the rom file
-    FILE *rom = fopen("./rom/test_opcode.ch8", "r");
+    FILE *rom = fopen("./rom/Keypad_Test_fixed.ch8", "r");
 
     if(!rom){
         printf("Could not open ROM\n");
@@ -55,26 +56,20 @@ int main(){
     device.programCounter = ROM_ADDRESS;
     // Set stack pointer to 0
     device.stackPointer = 0;
+
+    // Clear keypad state
+    device.keypad = 0; 
     // Clear display
     CLS(&device);
 
-    SDL_Event event;
+    // const uint8_t* keyState = SDL_GetKeyboardState(NULL);
     int running = 1;
 
     while (running) {
-        while (SDL_PollEvent(&event)) {
-            if (event.type == SDL_QUIT) {
-                running = 0;
-            }
-        }
-
-        printf("-------next instruction--------\n");
-        printf("PC : %04x\n", device.programCounter);
-        printf("index : %04X\n", device.index);
-        printf("V[2] : %02x\n", device.registers[2]);
+        fetchInput(&device.keypad, &running);
         // opcode is stored in two cell of memory because one opcode is 16bit
         uint16_t opcode = (device.memory[device.programCounter] << 8) | device.memory[device.programCounter+1];
-        printf("%04x\n", opcode);
+        // printf("%04x\n", opcode);
 
         // Increment program counter
         skip(&device);

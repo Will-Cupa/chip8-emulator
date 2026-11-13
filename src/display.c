@@ -6,6 +6,10 @@ Display initDisplay(){
         exit -1;
     }
 
+    // SDL2 bug with linux, on some keyboards, text input prevent certain keys to produce scancode
+    // See issue : https://github.com/libsdl-org/sdl/issues/14239
+    SDL_StopTextInput();
+
     SDL_Window* window = SDL_CreateWindow("CHIP-8", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH * SCALE_FAC, SCREEN_HEIGHT * SCALE_FAC, SDL_WINDOW_SHOWN);
     
     if(!window){
