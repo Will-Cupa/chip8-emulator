@@ -22,8 +22,6 @@ SoundDevice initSoundDevice(){
         x += .010f;
     }
 
-    // SDL_QueueAudio(audio_device, samples, sample_bytes);
-
     return (SoundDevice){audio_device, samples, sample_bytes, 0};
 }
 
