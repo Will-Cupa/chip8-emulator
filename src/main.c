@@ -2,6 +2,7 @@
 #include <time.h>
 #include "decode.h"
 #include "display.h"
+#include "sound.h"
 #include "inputManager.h"
 
 // in hertz
@@ -68,6 +69,8 @@ int main(){
     int running = 1;
     clock_t beginTime;
 
+    SoundDevice soundDevice = initSoundDevice();
+
     while (running) {
         beginTime = clock();
         fetchInput(&device.keypad, &running);
@@ -77,17 +80,28 @@ int main(){
 
         // Increment program counter
         skip(&device);
+
         // Decrement delay timer
-        device.delayTimer--;
+        if(device.delayTimer > 0){
+            device.delayTimer--;
+        }
+
+        // Decrement sound timer and play sound
+        if(device.soundTimer > 0){
+            play(&soundDevice);
+            device.soundTimer--;
+        }else{
+            stop(&soundDevice);
+        }
 
         decode(&device, opcode);
 
         draw(display.renderer, device.videoBuffer);
-
+        
         while(clock() - beginTime < CLOCKS_PER_SEC/CLOCK_SPEED);
     }
 
-
-    destroy(&display);
+    destroySoundDevice(&soundDevice);
+    destroyDisplay(&display);
     return 0;
 }

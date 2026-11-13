@@ -16,4 +16,4 @@ Display initDisplay();
 
 void draw(SDL_Renderer* renderer, uint64_t* videoBuffer);
 
-void destroy(Display* display);
+void destroyDisplay(Display* display);

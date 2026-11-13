@@ -57,7 +57,7 @@ void draw(SDL_Renderer* renderer, uint64_t* videoBuffer){
     SDL_RenderPresent(renderer);
 }
 
-void destroy(Display* display){
+void destroyDisplay(Display* display){
     SDL_DestroyRenderer(display->renderer);
     SDL_DestroyWindow(display->window);
     SDL_Quit();
