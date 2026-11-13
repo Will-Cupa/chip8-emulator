@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <time.h>
-#include "decode.h"
-#include "display.h"
-#include "sound.h"
-#include "inputManager.h"
+#include <string.h>
+
+#include "decoder/decoder.h"
+#include "display/display.h"
+#include "sound/sound.h"
+#include "inputs/inputs.h"
 
 // in hertz
 #define DEFAULT_CLOCK_SPEED 400.0f

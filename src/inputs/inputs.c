@@ -1,4 +1,4 @@
-#include "inputManager.h"
+#include "inputs.h"
 
 int keymap[16] = 
 {

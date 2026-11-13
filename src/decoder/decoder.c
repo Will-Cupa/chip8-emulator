@@ -1,4 +1,4 @@
-#include "decode.h"
+#include "decoder.h"
 
 void decode(Chip8 *device, uint16_t opcode){
     uint8_t index = (opcode >> 8) & 0x0F;

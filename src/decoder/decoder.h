@@ -1,5 +1,5 @@
 #pragma once
-#include "chip8.h"
+#include "../chip8/chip8.h"
 
 void decode(Chip8 *device, uint16_t opcode);
 
